@@ -7,7 +7,7 @@ import java.util.LinkedList;
 // A Class that represent a rook in chess game, extend piece
 public class Rook extends Piece {
 
-    private static final int TYPE = ROOK;
+    private static final int TYPE = PieceSettings.Rook.getType();
     private boolean moved;
 
     // Builder
@@ -26,7 +26,7 @@ public class Rook extends Piece {
         int x = getX(), y = getY();
 
         // Check for white
-        if (getColor() == WHITE)
+        if (getColor() == PieceSettings.WHITE)
             return y == 0 && (x == 0 || x == 1);
 
         // Check for black

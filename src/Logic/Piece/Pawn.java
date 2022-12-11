@@ -8,20 +8,21 @@ import java.util.LinkedList;
 public class Pawn extends Piece {
 
     private final int moveDirection;
+    private static final int TYPE = PieceSettings.Pawn.getType();
 
     // Builder
     public Pawn(int color, int x, int y) {
         super(color, x, y);
 
         // if It's white, it goes down the board, if its black, it goes up
-        this.moveDirection = color == WHITE ? -1 : 1;
+        this.moveDirection = color == PieceSettings.WHITE ? -1 : 1;
     }
 
 
     @Override
     // Return the type of the piece
     public int getType() {
-        return PAWN;
+        return TYPE;
     }
 
 
@@ -54,7 +55,7 @@ public class Pawn extends Piece {
     // Check what advance moves this pawn can do, and add them to the list
     private void pawnAdvance(int x, int y, LinkedList<PieceMove> list, Piece[][] board) {
         // Check if the pawn has moved
-        boolean didNotMoved = (getColor() == WHITE && y == 6) || (getColor() == BLACK && y == 1);
+        boolean didNotMoved = (getColor() == PieceSettings.WHITE && y == 6) || (getColor() == PieceSettings.BLACK && y == 1);
 
         // Check pawn advanced option
         if (board[x][y + moveDirection] == null) {

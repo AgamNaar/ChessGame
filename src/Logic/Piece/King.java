@@ -7,7 +7,7 @@ import java.util.LinkedList;
 // A Class that represent a king in chess game, extend piece
 public class King extends Piece {
 
-    private static final int TYPE = KING;
+    private static final int TYPE = PieceSettings.King.getType();;
 
     // Builder
     public King(int color, int x, int y) {

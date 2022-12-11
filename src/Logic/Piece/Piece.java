@@ -2,32 +2,42 @@ package Logic.Piece;
 
 import Logic.Board.PieceMove;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
 // An abstract class that represent a piece in chess
 public abstract class Piece {
 
     private final int color;
+    private final Image image;
     private int x;
     private int y;
 
-    protected static final int KING = 0;
-    protected static final int QUEEN = 1;
-    protected static final int BISHOP = 2;
-    protected static final int KNIGHT = 3;
-    protected static final int ROOK = 4;
-    protected static final int PAWN = 5;
-
-    public static final int WHITE = 0;
-    public static final int BLACK = 1;
-
-
-    // builder, x for x position on board and y for y position board for board, and color of the piece
+    // builder, x for x position on board and y for y position board for board, color of the piece, and image for the piece
     public Piece(int color, int x, int y) {
         this.color = color;
         this.x = x;
         this.y = y;
+        this.image = getImage();
+    }
+
+    // Get image depending on the piece and its type
+    private Image getImage() {
+        String imagePath = PieceSettings.imagePath[getColor()][getType()];
+        try {
+            return ImageIO.read(new File(imagePath));
+        } catch (IOException e) {
+            System.out.println(PieceSettings.imagePath[getColor()][getType()]);
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Image getPieceImage() {
+        return this.image;
     }
 
     public int getX() {

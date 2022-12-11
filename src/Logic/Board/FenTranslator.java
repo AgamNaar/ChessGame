@@ -47,10 +47,10 @@ public class FenTranslator {
                 y++;
             } else { // It's a piece, get its "fen type, and if its upper case its white, lower is black
                 if (Character.isUpperCase(curr)) {
-                    color = Piece.WHITE;
+                    color = PieceSettings.WHITE;
                     fenType = curr - 'A';
                 } else {
-                    color = Piece.BLACK;
+                    color = PieceSettings.BLACK;
                     fenType = curr - 'a';
                 }
                 piece = createPieceFen(fenType, color, x, y);

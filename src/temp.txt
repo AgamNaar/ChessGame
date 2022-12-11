@@ -1,0 +1,22 @@
+    private final int KING = 0;
+    private final int QUEEN = 1;
+    private final int BISHOP = 2;
+    private final int KNIGHT = 3;
+    private final int ROOK = 4;;
+    private final int PAWN = 5;
+
+    private final int WHITE = 0;
+    private final int BLACK = 1;
+
+            if (piece != null) {
+                if (piece == prevSelectPiece)
+                    return;
+
+                drawBoardWithPieces();
+                ArrayList<PieceMove> list = piece.getLegalMoves(boardLogic.getBoard());
+                this.showLegalMoves(list);
+                prevSelectPiece = piece;
+            } else {
+                drawBoardWithPieces();
+                prevSelectPiece = null;
+            }

@@ -1,8 +1,8 @@
 
-package Gui;
+package Board;
 
-import Logic.Piece.Piece;
-import Logic.Board.PieceMove;
+import Piece.Piece;
+import Utils.PieceImageCollectionLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,17 +11,24 @@ import java.util.LinkedList;
 // A class that handle all the gui aspects of the chess board
 public class BoardGui extends JPanel {
 
+    private static final String RELATIVE_FOLDER_LOCATION = "src\\Piece\\PieceImage\\";
+
     private final Color primaryColor;
     private final Color secondaryColor;
     protected final int squerSize;
+
+
+    public static Image[][] piecesImagesCollection = new Image[2][6];
 
     // Builder, receive parameters for board and initialize them
     public BoardGui(Color primaryColor, Color secondaryColor, int size) {
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
         this.squerSize = size / 8;
-    }
 
+        PieceImageCollectionLoader pieceImageCollectionLoader = new PieceImageCollectionLoader();
+        piecesImagesCollection = pieceImageCollectionLoader.getCollection();
+    }
 
     @Override
     public void paint(Graphics g) {
@@ -34,13 +41,13 @@ public class BoardGui extends JPanel {
     }
 
     // Given a list of all the pieces, draw them on the board
-    public void drawPieces(LinkedList<Piece> list) {
+    private void drawPieces(LinkedList<Piece> list) {
         for (Piece piece : list)
             drawPiece(piece);
     }
 
     // Given a piece move list, draw all the legal moves on the board
-    public void showLegalMoves(LinkedList<PieceMove> legalMoveList) {
+    protected void showLegalMoves(LinkedList<PieceMove> legalMoveList) {
         Graphics graphics = getGraphics();
         int x, y;
 
@@ -56,7 +63,7 @@ public class BoardGui extends JPanel {
     }
 
     // Draw the board of the game
-    public void drawBoard(Graphics graphics) {
+    private void drawBoard(Graphics graphics) {
         boolean primary = true;
 
         for (int y = 0; y < 8; y++) {
@@ -74,14 +81,16 @@ public class BoardGui extends JPanel {
 
 
     // Given a piece, draw it on the board
-    public void drawPiece(Piece piece) {
+    private void drawPiece(Piece piece) {
         Graphics graphics = getGraphics();
-        int x = piece.getX(), y = piece.getY();
+        int x = piece.getX(), y = piece.getY(), pieceColor = piece.getPieceColorOfThePlayer(), pieceType = piece.getPieceType();
 
         // Re-size the image to match the board
-        Image image = piece.getPieceImage().getScaledInstance(squerSize, squerSize, 0);
+        Image image =  piecesImagesCollection[pieceColor][pieceType];
+        image = image.getScaledInstance(squerSize, squerSize, 0);
 
         graphics.drawImage(image, x * squerSize, y * squerSize, this);
     }
+
 
 }

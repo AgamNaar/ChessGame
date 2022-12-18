@@ -1,4 +1,6 @@
-import Logic.Board.Board;
+import Board.Board;
+import Utils.GameSettings;
+import Utils.Player;
 
 public class Game {
 

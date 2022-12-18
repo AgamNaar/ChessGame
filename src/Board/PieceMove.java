@@ -1,4 +1,4 @@
-package Logic.Board;
+package Board;
 
 public class PieceMove {
     private int x;

@@ -1,7 +1,7 @@
-package Logic.Board;
+package Board;
 
-import Gui.BoardGui;
-import Logic.Piece.Piece;
+import Piece.Piece;
+import Utils.FenTranslator;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -12,6 +12,7 @@ public class Board extends BoardGui implements MouseListener {
 
     private final BoardLogic boardLogic;
     private Piece prevSelectPiece;
+    private FenTranslator fenTranslator;
 
     // Builder without a fen
     public Board(Color primaryColor, Color secondaryColor, int size) {

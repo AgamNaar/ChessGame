@@ -1,14 +1,14 @@
-/*
+package Utils;/*
     A class to translate FEN into game settings
  */
-package Logic.Board;
 
-import Logic.Piece.*;
+import Piece.*;
 
 import java.util.LinkedList;
 
 public class FenTranslator {
 
+    private static final String CLASSIC_START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
 
     // FenType: 17 rook, 13 knight, 1 bishop, queen 16, king 10, pawn 15
     // FenType is the letter the piece represent - A/a depends on it color
@@ -22,6 +22,15 @@ public class FenTranslator {
     // Given a string that represent a FEN, return a list with all the piece of the board
     public LinkedList<Piece> translateFen(String fen) {
         LinkedList<Piece> list = getFenPieces(fen);
+        //TODO: add other setting from fen
+
+
+        return list;
+    }
+
+    // Return piece positions of the class chess game set up
+    public LinkedList<Piece> translateFen() {
+        LinkedList<Piece> list = getFenPieces(CLASSIC_START_FEN);
         //TODO: add other setting from fen
 
 
@@ -47,10 +56,10 @@ public class FenTranslator {
                 y++;
             } else { // It's a piece, get its "fen type, and if its upper case its white, lower is black
                 if (Character.isUpperCase(curr)) {
-                    color = PieceSettings.WHITE;
+                    color = Piece.WHITE;
                     fenType = curr - 'A';
                 } else {
-                    color = PieceSettings.BLACK;
+                    color = Piece.BLACK;
                     fenType = curr - 'a';
                 }
                 piece = createPieceFen(fenType, color, x, y);

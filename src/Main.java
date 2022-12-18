@@ -1,4 +1,4 @@
-import Logic.Board.Board;
+import Board.Board;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +11,8 @@ public class Main {
         JFrame jFrame = new JFrame("Game");
         setFrame(jFrame);
 
-
         String fen = "r1b1k1nr/p2p1pNp/n2B4/1p1NP2P/6P1/3P1Q2/P1P1K3/q5b1";
-        Board board1 = new Board(Color.white, Color.CYAN, 512,fen);
+        Board board1 = new Board(Color.lightGray, Color.WHITE, 700);
         jFrame.add(board1);
         jFrame.setVisible(true);
         board1.drawBoardWithPieces();
